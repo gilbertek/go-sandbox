@@ -52,6 +52,36 @@ func main() {
 		  Dereference Operation
 			To deferrence a pointer, tell the compiler to reach into a pointer and grab a value
 			You deferrence a variable by preceding the variable with an asterisk (*)
+
+			A pointer is a variable that stores the address of a value, rather than the value itself.
+			If you think of a computer's memory (RAM) as a JSON object, a pointer would be like the key, and a
+			normal variable would be the value
+
+			1. Creating a pointer
+			& point an address in memory
+			nString := "Alpha"
+			pString := &nString
+
+			2. Describing a pointer
+
+			In a function signature or type definition, the * is used to designate that a value is a pointer
+			func passPointer(pointer *string)
+
+			3. Dereferencing a pointer
+			It can be slightly confusing, but the * is used to describe a pointer and it's also used as an
+			operator to deferrence a pointer.
+
+			func derefPointer(pointer *string) {
+				nString := *pointer
+			}
+
+			# When to use a Pointer
+			- A function that mutates one of its parameters
+			- Better performance
+				If you have a string that is really expensice to copy, using a pointer may be worthwhile.
+			- Need a Nil Value option
+
+
 	*/
 	var lastName *string = new(string)
 	*lastName = "King"
@@ -159,4 +189,87 @@ func main() {
 
 	u2 := user{ID: 2, FirstName: "John", Lastname: "Doe"}
 	fmt.Println(u2)
+
+	// Interfaces
+	/*
+		Interfaces allow us to treat different types as the same typess when it comes to specific behaviors.
+		They are central to a Go Programmers toolbelts.
+
+		Interfaces are named collections of method signatures, they are how we achieve a kind of polymorphism in Go.
+		type error interface {
+			Error() string
+		}
+
+		By definition, the error interface encapsulates any type that has an Error() method defined on it.
+		It accepts no parameters, and returns a string
+
+		For example
+		type networkIssue struct {
+			message string
+			code int
+		}
+
+		func (ni networkIssue) Error() string {
+			return fmt.Sprintf("Network error! message: %s, code: %v", np.message, np.code)
+		}
+
+		Now we can use an instance of the networkIssue struct whenever an error occurs
+
+
+		Interfaces are not classes, they are slimmer
+		Interfaces don't have constructors or destructors that require that setup/destruction data
+		Interfaces are not hierachical by natue
+		Interfaces define function signatures, but not underlyong behavior
+
+	*/
+
+	// Looping
+	// There's only one loop construct in go the for loop
+	/*
+		  - Loop till condition
+			- Infinite loops
+			- Loop till condition with pause clause
+			- Loop over collections
+	*/
+
+	// Looping till condition
+	// var idx int
+	// for idx < 5 {
+	// 	println(idx)
+	// 	idx++
+	//
+	// 	if idx == 3 {
+	// 		continue
+	// 	}
+	// 	println("Continuing...")
+	// }
+
+	// - Loop till condition with pause clause
+	// for idx := 0; idx < 5; idx++ {
+	// 	println(idx)
+	// }
+
+	// - Infinite loops
+	// var idx int
+	// for {
+	// 	if idx == 15 {
+	// 		break
+	// 	}
+	// 	println(idx)
+	// 	idx++
+	// }
+	// - Loop over collections
+	// slixe := []int{1, 2, 3, 4}
+	// for i, v := range slixe {
+	// 	println(i, v)
+	// }
+	//
+	// knownPorts := map[string]int{"http": 80, "https": 443}
+	// for k, v := range knownPorts {
+	// 	println(k, v)
+	// }
+
+	// PANIC
+	// panic("Something bad just happened")
+
 }
