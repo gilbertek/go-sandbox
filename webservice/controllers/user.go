@@ -15,6 +15,7 @@ type userController struct {
 }
 
 func (uc userController) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	if r.URL.Path == "/users" {
 		switch r.Method {
 		case http.MethodGet:
